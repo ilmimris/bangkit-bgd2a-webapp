@@ -52,6 +52,7 @@ const App = () => {
     next();
     const image = tf.browser.fromPixels(imageRef.current, 3)
       .resizeBilinear([224, 224])
+      .cast('float32')
       .div(tf.scalar(255.0))
       .expandDims(0);
 
