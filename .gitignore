@@ -1,0 +1,6 @@
+node_modules
+dist/*
+!dist/tfjs/*.bin
+!dist/tfjs/*.json
+.cache
+.parcel-cache
