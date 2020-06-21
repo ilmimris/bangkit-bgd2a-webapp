@@ -1,4 +1,5 @@
 # Nano React App Default Javascript Template
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2a5f8e1b-81de-4259-b997-0c0b4ac5c8cd/deploy-status)](https://app.netlify.com/sites/bangkit-bdg2a/deploys)
 
 The default template project for [nano-react-app](https://github.com/adrianmcli/nano-react-app).
 

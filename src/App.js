@@ -50,11 +50,7 @@ const App = () => {
 
   const identify = async () => {
     next();
-    const image = tf.browser.fromPixels(imageRef.current, 3)
-      .resizeBilinear([224, 224])
-      .cast('float32')
-      .div(tf.scalar(255.0))
-      .expandDims(0);
+    const image = tf.browser.fromPixels(imageRef.current, 3).resizeBilinear([224, 224]).cast('float32').div(tf.scalar(255.0)).expandDims(0);
 
     const results = await model.predict(image, { batchSize: 1 });
     // console.debug({ results })
@@ -77,7 +73,7 @@ const App = () => {
         <li key="COVID-19+">
           {`COVID-19 (Positive): ${((1 - num) * 100).toFixed(2)}%`}
         </li>
-        <br/>
+        <br />
       </>
     )
   }
