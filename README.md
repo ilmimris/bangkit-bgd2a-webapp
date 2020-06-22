@@ -50,6 +50,9 @@ Labeled Optical Coherence Tomography (OCT) and Chest X-Ray Images for Classifica
 - [Pneumonia / Bacteria vs Virus](https://github.com/ilmimris/bangkit-bgd2a-bacteria-vs-virus) 
 - [Pneumonia / Virus / SARS-Cov-2 vs Others](https://github.com/ilmimris/bangkit-bgd2a-virus-covid-vs-noncovid) 
 
+#### Baseline Architectur and Transfer Learning
+We use baseline model `DenseNet` with pretrained weight `imageNet`, then we freze the baseline, cut the last layer, and then we add more layers to work with XR and CT Image COVID19. Why `DenseNet`? `DenseNet` model is small and has high accuracy. 
+
 #### Quantization Technique
 In order to make model works on the edge (browser), we convert all weights model from `float32` into `uint8` and support `tfjs`. The result is the model more lightest and faster to make prediction than before quatization. 
 
