@@ -50,6 +50,19 @@ Labeled Optical Coherence Tomography (OCT) and Chest X-Ray Images for Classifica
 - [Pneumonia / Bacteria vs Virus](https://github.com/ilmimris/bangkit-bgd2a-bacteria-vs-virus) 
 - [Pneumonia / Virus / SARS-Cov-2 vs Others](https://github.com/ilmimris/bangkit-bgd2a-virus-covid-vs-noncovid) 
 
+#### Quantization Technique
+In order to make model works on the edge (browser), we convert all weights model from `float32` into `uint8` and support `tfjs`. The result is the model more lightest and faster to make prediction than before quatization. 
+
+#### Convertion Tool 
+We use `tensorflowjs_converter`. Install with:
+```shell
+pip install tensorflowjs
+```
+Do convertion with: 
+```shell
+tensorflowjs_converter --input_format keras --quantize_uint8  ./model.h5 ./tfjs.uint8
+```
+
 ## Contributors
 - Muhammad Rafiul Ilmi Syarifudin ([ilmimris](https://github.com/ilmimris)) :sparkles: 
 - Gabriel Daely ([daeIy](https://github.com/daeIy))
