@@ -19,7 +19,7 @@ export default () => {
 
     return (
         <div className="App">
-            <Layout>
+            <Layout className="layout">
                 <Header>
                     <Title style={{color: 'white', textAlign: 'center'}}>
                         Bangkit Final Project BDG2-A
