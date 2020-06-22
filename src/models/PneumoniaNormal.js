@@ -17,7 +17,7 @@ export default () => {
     const [appState, dispatch] = useContext(StatemachineContext);
     const [model, setModel] = useState(null)
     const [
-        , ,
+        imageUrl, imageFn,
         setImageFn, setImageUrl,
         inputRef, imageRef
     ] = useContext(PatientContext);
@@ -62,7 +62,11 @@ export default () => {
 
     const handleUpload = event => {
         const { files } = event.target;
-        if (files.length > 0) {
+        if (imageUrl && imageFn) {
+            setImageFn(imageFn);
+            setImageUrl(imageUrl);
+            next();
+        } else if (files.length > 0) {
             const name = files[0].name;
             const url = URL.createObjectURL(files[0]);
             setImageFn(name);
@@ -94,7 +98,8 @@ export default () => {
     const buttonProps = {
         initial: { text: "Load Model", action: loadModel },
         loadingModel: { text: "Loading Model…", action: () => { } },
-        awaitingUpload: { text: "Upload Image", action: () => inputRef.current.click() },
+        awaitingUpload: { text: !(imageUrl && imageFn) ? "Upload Image" : "Use Previous Image", 
+                          action: () => !(imageUrl && imageFn) ? inputRef.current.click() : next() },
         ready: { text: "Identify", action: identify },
         classifying: { text: "Identifying…", action: () => { } },
         complete: { text: "Reset", action: reset }
