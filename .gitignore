@@ -108,3 +108,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# testing
+/coverage
+
+# production
+/build
+
+# firebase
+.firebase
