@@ -1,14 +1,17 @@
 import React from "react";
 import './App.css';
 
-import { PneumoniaNormal, VirusCovidNoncovid } from './models';
+import { PatientProvider, StatemachineProvider } from './providers';
+import Main from './pages/Main';
 
 const App = () => {
   return (
     <>
-      <h1>XR & CT COVID-19 Screening</h1>
-      <PneumoniaNormal></PneumoniaNormal>
-      <VirusCovidNoncovid/>
+      <StatemachineProvider>
+        <PatientProvider>
+          <Main />
+        </PatientProvider>
+      </StatemachineProvider>
     </>
   );
 }

@@ -1,4 +1,6 @@
-import React, { useReducer, useState, useRef } from "react";
+import React, { useReducer, useState, useRef, useContext } from "react";
+import { Row, Col, Button, Typography } from 'antd';
+
 // Import @tensorflow/tfjs
 import * as tf from '@tensorflow/tfjs';
 // Adds the WebGL backend to the global backend registry.
@@ -7,6 +9,7 @@ import '@tensorflow/tfjs-backend-webgl';
 import '../App.css';
 
 import { formatResultBacteriaVirus } from '../utils/formatter';
+import { PatientContext } from '../providers';
 
 
 export const stateMachine = {
@@ -23,14 +26,18 @@ export const stateMachine = {
 
 export const reducer = (currentState, event) => stateMachine.states[currentState].on[event] || stateMachine.initial;
 
-// console.log(tf.getBackend());
+console.log(tf.getBackend());
+
+const { Title, Text } = Typography;
+
 
 export default () => {
     const [appState, dispatch] = useReducer(reducer, stateMachine.initial);
     const [model, setModel] = useState(null)
-    const [imageUrl, setImageUrl] = useState(null);
-    const [results, setResults] = useState([]);
+    // const [imageUrl, setImageUrl] = useState(null);
+    const [imageUrl, imageFn, setImageFn, setImageUrl] = useContext(PatientContext);
     const inputRef = useRef();
+    const [results, setResults] = useState([]);
     const imageRef = useRef();
 
     const next = () => dispatch("next")
@@ -55,13 +62,18 @@ export default () => {
 
     const handleUpload = event => {
         const { files } = event.target;
-        if (files.length > 0) {
+        if (imageUrl && imageFn) {
+            setImageFn(imageFn);
+            setImageUrl(imageUrl);
+            next();
+        } else if (files.length > 0) {
+            const name = files[0].name;
             const url = URL.createObjectURL(files[0]);
+            setImageFn(name);
             setImageUrl(url);
             next();
         }
     }
-
     const identify = async () => {
         next();
         const image = tf.browser.fromPixels(imageRef.current, 3);
@@ -95,13 +107,19 @@ export default () => {
 
     return (
         <div>
-            <h2>Diagnosing Pneumonia Bacteria or Virus</h2>
-            {showImage && <img src={imageUrl} alt="upload-preview" ref={imageRef} />}
-            {showResults && (formatResultBacteriaVirus(Array.from(results.dataSync())[0]))}
-            <input type="file" accept="image/*" capture="camera" ref={inputRef} onChange={handleUpload}></input>
-            <button onClick={buttonProps[appState].action}>
-                {buttonProps[appState].text}
-            </button>
+            <Row>
+                <Title level={4}>Diagnosing Pneumonia Bacteria or Virus</Title>
+            </Row>
+            <Row>
+                {showImage && <img src={imageUrl} alt="upload-preview" ref={imageRef} />}
+                {showResults && (formatResultBacteriaVirus(Array.from(results.dataSync())[0]))}
+            </Row>
+            <Row>
+                <input type="file" accept="image/*" capture="camera" ref={inputRef} onChange={handleUpload}></input>
+                <Button onClick={buttonProps[appState].action}>
+                    {buttonProps[appState].text}
+                </Button>
+            </Row>
         </div>
     );
 };

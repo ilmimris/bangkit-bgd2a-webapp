@@ -1,50 +1,37 @@
-import React, { useReducer, useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { Row, Col, Button, Typography } from 'antd';
+
 // Import @tensorflow/tfjs
 import * as tf from '@tensorflow/tfjs';
 // Adds the WebGL backend to the global backend registry.
 import '@tensorflow/tfjs-backend-webgl';
 
 import { formatResultPneumonia } from '../utils/formatter';
-
-
-export const stateMachine = {
-    initial: "initial",
-    states: {
-        initial: { on: { next: "loadingModel", text: 'Load Model' } },
-        loadingModel: { on: { next: "awaitingUpload", text: 'Loading Model' } },
-        awaitingUpload: { on: { next: "ready" } },
-        ready: { on: { next: "classifying" }, showImage: true },
-        classifying: { on: { next: "complete" } },
-        complete: { on: { next: "awaitingUpload" }, showImage: true, showResults: true }
-    }
-};
-
-export const reducer = (currentState, event) => stateMachine.states[currentState].on[event] || stateMachine.initial;
+import { PatientContext, StatemachineContext, reducer, stateMachine } from '../providers';
 
 // console.log(tf.getBackend());
 
+const { Title, Text } = Typography;
+
 export default () => {
-    const [appState, dispatch] = useReducer(reducer, stateMachine.initial);
+    const [appState, dispatch] = useContext(StatemachineContext);
     const [model, setModel] = useState(null)
-    const [imageUrl, setImageUrl] = useState(null);
+    const [
+        imageUrl, imageFn,
+        setImageFn, setImageUrl,
+        inputRef, imageRef
+    ] = useContext(PatientContext);
+
     const [results, setResults] = useState([]);
-    const inputRef = useRef();
-    const imageRef = useRef();
 
     const next = () => dispatch("next")
 
     const loadModel = async () => {
         next();
-        // const vgg16model = await tf.loadLayersModel('tfjs/model.json');
-        // setModel(vgg16model)
         console.info(`Load model`);
-        // const model = await tf.loadLayersModel(pathModel);
-        // const pneumonia_vs_normal = await tf.loadLayersModel('pneumonia-vs-normal.uint8/model.json');
         const model = await tf.loadLayersModel('pneumonia-vs-normal.uint8/model.json');
         // console.debug(model.summary());
         console.info("Model loaded");
-        // setModel(pneumonia_vs_normal)
-
         setModel(model);
         console.info("Set model");
         next();
@@ -54,7 +41,9 @@ export default () => {
     const handleUpload = event => {
         const { files } = event.target;
         if (files.length > 0) {
+            const name = files[0].name;
             const url = URL.createObjectURL(files[0]);
+            setImageFn(name);
             setImageUrl(url);
             next();
         }
@@ -93,13 +82,18 @@ export default () => {
 
     return (
         <div>
-            <h2>Diagnosing Pneumonia</h2>
-            {showImage && <img src={imageUrl} alt="upload-preview" ref={imageRef} />}
-            {showResults && (formatResultPneumonia(Array.from(results.dataSync())[0]))}
-            <input type="file" accept="image/*" capture="camera" ref={inputRef} onChange={handleUpload}></input>
-            <button onClick={buttonProps[appState].action}>
-                {buttonProps[appState].text}
-            </button>
+            <Row>
+                <Title level={4}>Diagnosing Pneumonia</Title>
+            </Row>
+            <Row>
+                {showResults && (formatResultPneumonia(Array.from(results.dataSync())[0]))}
+            </Row>
+            <Row>
+                <input type="file" accept="image/*" capture="camera" ref={inputRef} onChange={handleUpload}></input>
+                <Button onClick={buttonProps[appState].action}>
+                    {buttonProps[appState].text}
+                </Button>
+            </Row>
         </div>
     );
 };
