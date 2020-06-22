@@ -6,13 +6,14 @@ import '@tensorflow/tfjs-backend-webgl';
 
 import './App.css';
 
-import { PneumoniaNormal } from './models';
+import { PneumoniaNormal, VirusCovidNoncovid } from './models';
 
 const App = () => {
   return (
     <>
       <h1>XR & CT COVID-19 Screening</h1>
       <PneumoniaNormal></PneumoniaNormal>
+      <VirusCovidNoncovid/>
     </>
   );
 }
