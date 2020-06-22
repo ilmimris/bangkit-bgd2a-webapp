@@ -16,6 +16,20 @@ This project about COVID-19 detection is for **educational purposes only**. It i
 - Netlify : [https://bangkit-bdg2a.netlify.app/](https://bangkit-bdg2a.netlify.app/)
 - Firebase Hosting [https://bangkit-final-project.web.app](https://bangkit-final-project.web.app)
 
+### Screenshots
+<center>
+
+> Normal
+![Bangk!t](public/normal.png)
+
+> Pneumonia / Virus
+![Bangk!t](public/pneumoniavirus.png)
+
+> Pneumonia / Virus / SARS-Cov-2
+![Bangk!t](public/pneumoniacovid.png)
+
+</center>
+
 ## Dataset
 - Joseph Paul Cohen and Paul Morrison and Lan Dao
 COVID-19 image data collection, arXiv:2003.11597, 2020
