@@ -97,7 +97,8 @@ export default () => {
     const buttonProps = {
         initial: { text: "Load Model", action: loadModel },
         loadingModel: { text: "Loading Model…", action: () => { } },
-        awaitingUpload: { text: "Upload Image", action: () => inputRef.current.click() },
+        awaitingUpload: { text: !(imageUrl && imageFn) ? "Upload Image" : "Use Previous Image", 
+                          action: () => !(imageUrl && imageFn) ? inputRef.current.click() : next() },
         ready: { text: "Identify", action: identify },
         classifying: { text: "Identifying…", action: () => { } },
         complete: { text: "Reset", action: reset }
@@ -111,11 +112,11 @@ export default () => {
                 <Title level={4}>Diagnosing Pneumonia Bacteria or Virus</Title>
             </Row>
             <Row>
-                {showImage && <img src={imageUrl} alt="upload-preview" ref={imageRef} />}
+                {showImage && <img src={imageUrl} alt="upload-preview" ref={imageRef} style={{display: 'none'}}/>}
                 {showResults && (formatResultBacteriaVirus(Array.from(results.dataSync())[0]))}
             </Row>
             <Row>
-                <input type="file" accept="image/*" capture="camera" ref={inputRef} onChange={handleUpload}></input>
+                <input style={{display: "none"}} type="file" accept="image/*" capture="camera" ref={inputRef} onChange={handleUpload}></input>
                 <Button onClick={buttonProps[appState].action}>
                     {buttonProps[appState].text}
                 </Button>

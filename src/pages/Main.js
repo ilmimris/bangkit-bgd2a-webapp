@@ -41,7 +41,7 @@ export default () => {
                             )}
                         </Col>
                     </Row>
-                    <Row gutter={[16, 16]} style={{ padding: 12 }}>
+                    <Row gutter={[24, 16]} style={{ padding: 12 }}>
                         <Col span={8}> <PneumoniaNormal /> </Col>
                         <Col span={8}> <BacteriaVirus /> </Col>
                         <Col span={8}> <VirusCovidNoncovid /> </Col>
