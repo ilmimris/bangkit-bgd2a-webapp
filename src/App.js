@@ -50,9 +50,13 @@ const App = () => {
 
   const identify = async () => {
     next();
-    const image = await tf.browser.fromPixels(imageRef.current, 3).resizeBilinear([224, 224]).cast('float32').div(tf.scalar(255.0)).expandDims(0);
+    const image = tf.browser.fromPixels(imageRef.current, 3);
+    console.log({image});
+    
+    const input = image.resizeBilinear([224, 224]).cast('float32').div(tf.scalar(255.0)).expandDims(0)
+    console.log({input});
 
-    const results = await model.predict(image, { batchSize: 1 });
+    const results = await model.predict(input, { batchSize: 1 });
     // console.debug({ results })
     setResults(results);
     next();

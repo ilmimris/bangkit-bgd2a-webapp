@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "npx parcel index.html",
+    "dev": "npx parcel build index.html && firebase serve",
+    "build": "npx parcel build index.html"
   },
   "license": "MIT",
   "dependencies": {
