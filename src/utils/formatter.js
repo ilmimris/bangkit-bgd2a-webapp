@@ -11,7 +11,7 @@ export const formatResultCovid = num => {
             <li key="COVID-19+">
                 {`COVID-19 (Positive): ${((1 - num) * 100).toFixed(2)}%`}
             </li> */}
-            <Text>SARS-Cov-2 infections probaility:</Text>
+            <Text>SARS-Cov-2 infections probability:</Text>
             <Progress
                 percent={(Math.round((1 - num) * 100)).toFixed(2)}
                 status="active"
@@ -33,13 +33,13 @@ export const formatResultBacteriaVirus = num => {
                 {`Virus: ${((1 - num) * 100).toFixed(2)}%`}
             </li>
             <br /> */}
-            <Text>Pneumonia/<Text mark>Bacteria</Text> probaility:</Text>
+            <Text>Pneumonia/<Text mark>Bacteria</Text> probability:</Text>
             <Progress
                 status="active"
                 strokeColor="orange"
                 percent={(Math.round(num * 100)).toFixed(2)} />
             <br />
-            <Text>Pneumonia/<Text mark>Virus</Text> probaility:</Text>
+            <Text>Pneumonia/<Text mark>Virus</Text> probability:</Text>
             <Progress
                 status="active"
                 strokeColor="red"
@@ -59,7 +59,7 @@ export const formatResultPneumonia = num => {
                 {`Normal: ${((1 - num) * 100).toFixed(2)}%`}
             </li>
             <br /> */}
-            <Text>Pneumonia probaility:</Text>
+            <Text>Pneumonia probability:</Text>
             <Progress
                 status="active"
                 strokeColor="red"
