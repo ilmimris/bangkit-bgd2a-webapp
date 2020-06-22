@@ -42,18 +42,34 @@ export default () => {
 
     const next = () => dispatch("next")
 
-    const loadModel = async () => {
+    const loadModel = async ({ modelName = 'bacteria-vs-virus' }) => {
         next();
-        // const vgg16model = await tf.loadLayersModel('tfjs/model.json');
-        // setModel(vgg16model)
-        console.info(`Load model`);
-        // const model = await tf.loadLayersModel(pathModel);
-        // const pneumonia_vs_normal = await tf.loadLayersModel('pneumonia-vs-normal.uint8/model.json');
-        const model = await tf.loadLayersModel('bacteria-vs-virus.uint8/model.json');
+
+        const listModel = await tf.io.listModels();
+        console.debug({ listModel });
+
+        const getModel = async () => {
+            if (listModel[`indexeddb://${modelName}-model`]) {
+                console.info(`Load saved model: ${modelName}`);
+                const model = await tf.loadLayersModel(`indexeddb://${modelName}-model`);
+                // console.debug(model.summary());
+                return model
+            } else {
+                console.info(`Load model: ${modelName}`);
+                const model = await tf.loadLayersModel(`${modelName}.uint8/model.json`);
+                console.info(`Save model: ${modelName}`);
+                await model.save(`indexeddb://${modelName}-model`);
+                // console.debug(model.summary());
+                return model
+            }
+        }
+
+        console.debug({ listModel });
+
+
+        const model = await getModel();
         // console.debug(model.summary());
         console.info("Model loaded");
-        // setModel(pneumonia_vs_normal)
-
         setModel(model);
         console.info("Set model");
         next();
