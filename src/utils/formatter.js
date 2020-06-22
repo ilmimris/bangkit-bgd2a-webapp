@@ -14,6 +14,21 @@ export const formatResultCovid = num => {
     )
 }
 
+
+export const formatResultBacteriaVirus = num => {
+    return (
+        <>
+            <li key="Bacteria">
+                {`Bacteria: ${(num * 100).toFixed(2)}%`}
+            </li>
+            <li key="Virus">
+                {`Virus: ${((1 - num) * 100).toFixed(2)}%`}
+            </li>
+            <br />
+        </>
+    )
+}
+
 export const formatResultPneumonia = num => {
     return (
         <>
