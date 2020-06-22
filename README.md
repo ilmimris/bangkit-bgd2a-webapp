@@ -66,6 +66,59 @@ Do convertion with:
 tensorflowjs_converter --input_format keras --quantize_uint8  ./model.h5 ./tfjs.uint8
 ```
 
+## Web Apps
+This web application built using [`React`](https://reactjs.org/), styling with [`antd`](http://antd.design/), do machine learning thing with [`@tensorflow/tfjs`](https://www.npmjs.com/package/@tensorflow/tfjs), and use webgl backend with [`@tensorflow/tfjs-backend-webgl`](https://www.npmjs.com/package/@tensorflow/tfjs-backend-webgl). 
+
+This web application has been optimized, and will load model and save it into your browser. When your refresh the browser, the app does not need to refetch the model from server.
+
+#### Bootstraping Web App on Your Local Machine
+
+**Requirements** :
+- [nodejs v12.18.1](https://nodejs.org/en/download/)
+- [yarn](https://yarnpkg.com/getting-started/install/) 
+
+
+Clone this repo into your machine:
+```shell
+git clone https://github.com/ilmimris/bangkit-bgd2a-webapp
+```
+
+Open the directory `bangkit-bdg2a-webapp`:
+```shell
+cd bangkit-bdg2a-webapp
+```
+
+Install all the dependencies:
+```shell
+npm install
+```
+
+Start the web app:
+```shell
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser. *(Chrome is recommended)*
+
+## Deploy Apps
+### Self Hosting
+Build this project:
+```shell
+npm run build
+```
+
+Upload `build` directory into your hosting root directory such as `public_html/`. 
+
+### Firebase Hosting
+Build this project:
+```shell
+npm run build
+```
+Deploy to firebase:
+```shell
+firebase deploy
+```
+
 ## Contributors
 - Muhammad Rafiul Ilmi Syarifudin ([ilmimris](https://github.com/ilmimris)) :sparkles: 
 - Gabriel Daely ([daeIy](https://github.com/daeIy))
