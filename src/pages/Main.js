@@ -5,7 +5,7 @@ import { PneumoniaNormal, VirusCovidNoncovid, BacteriaVirus } from '../models';
 import { PatientContext, StatemachineContext, stateMachine } from '../providers';
 
 const { Header, Footer, Content } = Layout;
-const { Title, Text } = Typography;
+const { Title, Text, Link } = Typography;
 
 export default () => {
     const [
@@ -21,19 +21,19 @@ export default () => {
         <div className="App">
             <Layout className="layout">
                 <Header>
-                    <Title style={{color: 'white', textAlign: 'center'}}>
+                    <Title style={{ color: 'white', textAlign: 'center' }}>
                         Bangkit Final Project BDG2-A
                     </Title>
                 </Header>
-                <Content style={{margin: 'auto'}}>
+                <Content style={{ margin: 'auto' }}>
                     <Row>
                         <Col span={24}>
-                            <Title level={2} style={{textAlign:'center'}}>XR & CT COVID-19 Screening</Title>
+                            <Title level={2} style={{ textAlign: 'center' }}>XR & CT COVID-19 Screening</Title>
                         </Col>
                     </Row>
                     <Row>
-                        <Col span={12} offset={6} style={{margin: 'auto', textAlign: 'center'}}>
-                        {showImage && (
+                        <Col span={12} offset={6} style={{ margin: 'auto', textAlign: 'center' }}>
+                            {showImage && (
                                 <>
                                     <img src={imageUrl} alt="upload-preview" ref={imageRef} />
                                     <h4>filename: {imageFn}</h4>
@@ -47,7 +47,13 @@ export default () => {
                         <Col span={8}> <VirusCovidNoncovid /> </Col>
                     </Row>
                 </Content>
-                <Footer style={{textAlign: 'center'}}><Text >BDG2-A</Text></Footer>
+                <Footer style={{ textAlign: 'center' }}>
+                    <Text >BDG2-A</Text>
+                    &nbsp; 📃 &nbsp;
+                    <Link href="https://github.com/ilmimris/bangkit-bgd2a-webapp" target="_blank">
+                        Docs
+                     </Link>
+                </Footer>
             </Layout>
         </div>
     );
