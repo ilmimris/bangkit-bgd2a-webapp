@@ -1,9 +1,4 @@
-import React, { useReducer, useState, useRef } from "react";
-// Import @tensorflow/tfjs
-import * as tf from '@tensorflow/tfjs';
-// Adds the WebGL backend to the global backend registry.
-import '@tensorflow/tfjs-backend-webgl';
-
+import React from "react";
 import './App.css';
 
 import { PneumoniaNormal, VirusCovidNoncovid } from './models';
