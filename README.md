@@ -31,6 +31,11 @@ Labeled Optical Coherence Tomography (OCT) and Chest X-Ray Images for Classifica
 - Zhao, Jinyu and Zhang, Yichen and He, Xuehai and Xie, Pengtao. COVID-CT-Dataset: a CT scan dataset about COVID-19, 2020. arXiv preprint arXiv:[2003.13865](https://arxiv.org/pdf/2003.13865.pdf)
 [zhao2020COVID-CT-Dataset](https://github.com/UCSD-AI4H/COVID-CT)
 
+## Models
+- [Pneumonia vs Normal](https://github.com/ilmimris/bangkit-bgd2a-pneumonia-vs-normal) 
+- [Pneumonia / Bacteria vs Virus](https://github.com/ilmimris/bangkit-bgd2a-bacteria-vs-virus) 
+- [Pneumonia / Virus / SARS-Cov-2 vs Others](https://github.com/ilmimris/bangkit-bgd2a-virus-covid-vs-noncovid) 
+
 ## Contributors
 - Muhammad Rafiul Ilmi Syarifudin ([ilmimris](https://github.com/ilmimris)) :sparkles: 
 - Gabriel Daely ([daeIy](https://github.com/daeIy))
