@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Typography, Progress } from 'antd';
+import { Typography, Progress } from 'antd';
 const { Text } = Typography;
 
 export const formatResultCovid = num => {

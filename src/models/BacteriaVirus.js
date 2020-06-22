@@ -1,5 +1,5 @@
 import React, { useReducer, useState, useRef, useContext } from "react";
-import { Row, Col, Button, Typography } from 'antd';
+import { Row, Button, Typography } from 'antd';
 
 // Import @tensorflow/tfjs
 import * as tf from '@tensorflow/tfjs';
@@ -28,7 +28,7 @@ export const reducer = (currentState, event) => stateMachine.states[currentState
 
 console.log(tf.getBackend());
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 
 export default () => {

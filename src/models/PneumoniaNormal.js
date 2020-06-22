@@ -1,5 +1,5 @@
-import React, { useState, useRef, useContext } from "react";
-import { Row, Col, Button, Typography } from 'antd';
+import React, { useState, useContext } from "react";
+import { Row, Button, Typography } from 'antd';
 
 // Import @tensorflow/tfjs
 import * as tf from '@tensorflow/tfjs';
@@ -7,17 +7,17 @@ import * as tf from '@tensorflow/tfjs';
 import '@tensorflow/tfjs-backend-webgl';
 
 import { formatResultPneumonia } from '../utils/formatter';
-import { PatientContext, StatemachineContext, reducer, stateMachine } from '../providers';
+import { PatientContext, StatemachineContext, stateMachine } from '../providers';
 
 // console.log(tf.getBackend());
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 export default () => {
     const [appState, dispatch] = useContext(StatemachineContext);
     const [model, setModel] = useState(null)
     const [
-        imageUrl, imageFn,
+        , ,
         setImageFn, setImageUrl,
         inputRef, imageRef
     ] = useContext(PatientContext);
@@ -78,7 +78,7 @@ export default () => {
         complete: { text: "Reset", action: reset }
     };
 
-    const { showImage = false, showResults = false } = stateMachine.states[appState];
+    const { showResults = false } = stateMachine.states[appState];
 
     return (
         <div>
