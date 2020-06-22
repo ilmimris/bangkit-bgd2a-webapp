@@ -12,6 +12,7 @@
     "@tensorflow/tfjs": "^2.0.1",
     "@tensorflow/tfjs-backend-cpu": "^2.0.1",
     "@tensorflow/tfjs-backend-webgl": "^2.0.1",
+    "antd": "^4.3.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1"
